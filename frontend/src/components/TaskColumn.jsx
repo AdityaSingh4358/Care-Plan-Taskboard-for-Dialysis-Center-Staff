@@ -7,7 +7,19 @@ const COLUMN_LABELS = {
 }
 
 export default function TaskColumn({ status, tasks = [] }) {
-    const filtered = tasks.filter(t => t.status === status)
+    const filtered = tasks.filter(t => {
+        const isCompleted = t.status === 'completed'
+        
+        const getTaskDateStr = (d) => d && d.includes('T') ? d.split('T')[0] : d
+        const taskDate = getTaskDateStr(t.dueDate)
+        const todayStr = new Date().toISOString().split('T')[0]
+
+        const isOverdue = taskDate && taskDate < todayStr && !isCompleted
+
+        if (status === 'overdue') return isOverdue
+        if (status === 'completed') return isCompleted
+        return !isCompleted && !isOverdue
+    })
 
     return (
         <div style={{

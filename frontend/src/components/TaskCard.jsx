@@ -1,3 +1,5 @@
+import { useUpdateTask } from '../hooks/useUpdateTask'
+
 const ROLE_COLORS = {
     nurse: '#3b82f6',
     dietician: '#10b981',
@@ -12,6 +14,12 @@ const STATUS_COLORS = {
 
 export default function TaskCard({ task }) {
     const { title, role, assignee, dueDate, status, notes } = task ?? {}
+    const { mutate } = useUpdateTask(task.patientId)
+
+    const handleComplete = () => {
+        if (!task?._id) return;
+        mutate({ taskId: task._id, data: { status: 'completed' } })
+    }
 
     return (
         <div style={{
@@ -35,6 +43,17 @@ export default function TaskCard({ task }) {
                 {dueDate && <p>📅 {new Date(dueDate).toLocaleDateString()}</p>}
                 {notes && <p style={{ fontStyle: 'italic' }}>{notes}</p>}
             </div>
+
+            {status !== 'completed' && (
+                <button onClick={handleComplete} style={{
+                    marginTop: 12, width: '100%', background: '#10b981', color: '#fff',
+                    border: 'none', padding: '6px 12px', borderRadius: 6,
+                    cursor: 'pointer', fontSize: 12, fontWeight: 600,
+                    transition: 'all 0.2s ease'
+                }}>
+                    ✓ Mark Completed
+                </button>
+            )}
         </div>
     )
 }

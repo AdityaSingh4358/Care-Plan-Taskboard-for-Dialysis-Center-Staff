@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import { useCreateTask } from '../hooks/useCreateTask'
+import { usePatients } from '../hooks/usepatients'
 
-const ROLES = ['nurse', 'dietician', 'social_worker']
-const TYPES = ['lab', 'medication', 'dietary', 'followup']
+import { ROLES, TYPES } from '../constants'
 
-export default function CreateTaskModal({ patientId, onClose }) {
-    const { mutate, isPending, isError } = useCreateTask(patientId)
+export default function CreateTaskModal({ patientId: propsPatientId, onClose }) {
+    const { mutate, isPending, isError } = useCreateTask()
+    const { data: patients = [] } = usePatients()
+
     const [form, setForm] = useState({
+        patientId: propsPatientId || '',
         title: '', type: 'lab', role: 'nurse',
         assignee: '', dueDate: '', notes: '',
     })
@@ -15,6 +18,7 @@ export default function CreateTaskModal({ patientId, onClose }) {
 
     const submit = (e) => {
         e.preventDefault()
+        if (!form.patientId) return alert('Please select a patient')
         mutate(form, { onSuccess: onClose })
     }
 
@@ -26,6 +30,9 @@ export default function CreateTaskModal({ patientId, onClose }) {
                 {isError && <p style={{ color: '#ef4444', marginBottom: 8 }}>Failed to create task.</p>}
 
                 <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                    
+
+
                     <input name="title" placeholder="Title *" value={form.title}
                         onChange={handle} required style={inputStyle} />
 

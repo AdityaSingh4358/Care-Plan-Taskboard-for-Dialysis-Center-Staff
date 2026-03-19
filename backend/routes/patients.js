@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import Patient from '../models/Patient.js';
 import Task from '../models/Task.js';
 
@@ -17,6 +18,9 @@ router.get('/', async (req, res) => {
 // get single patient
 router.get('/:id', async (req, res) => {
   try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(404).json({ success: false, message: 'Invalid Patient ID format' });
+    }
     const patient = await Patient.findById(req.params.id);
     if (!patient) return res.status(404).json({ success: false, message: 'Patient not found' });
     res.json({ success: true, data: patient });
@@ -38,6 +42,10 @@ router.post('/', async (req, res) => {
 // get tasks for a patient
 router.get('/:id/tasks', async (req, res) => {
   try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      // If ID isn't valid, there can't be any real tasks, so just return empty
+      return res.json({ success: true, data: [] });
+    }
     const tasks = await Task.find({ patientId: req.params.id }).sort({ dueDate: 1 });
     res.json({ success: true, data: tasks });
   } catch (err) {
@@ -48,6 +56,9 @@ router.get('/:id/tasks', async (req, res) => {
 // create task for a patient
 router.post('/:id/tasks', async (req, res) => {
   try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ success: false, message: 'Invalid Patient ID format for creation' });
+    }
     const patient = await Patient.findById(req.params.id);
     if (!patient) return res.status(404).json({ success: false, message: 'Patient not found' });
 

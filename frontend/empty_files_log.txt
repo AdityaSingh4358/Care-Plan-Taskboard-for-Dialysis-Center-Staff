@@ -1,0 +1,6 @@
+﻿C:\Jano Healthcare Solutions\dialysis-assignment\frontend\src\api\endpoints.js
+C:\Jano Healthcare Solutions\dialysis-assignment\frontend\src\hooks\usepatients.js
+C:\Jano Healthcare Solutions\dialysis-assignment\frontend\src\hooks\usePatientTasks.js
+C:\Jano Healthcare Solutions\dialysis-assignment\frontend\src\hooks\useUpdateTask.js
+C:\Jano Healthcare Solutions\dialysis-assignment\frontend\src\store\filterStore.js
+C:\Jano Healthcare Solutions\dialysis-assignment\frontend\src\tests\TaskCard.test.jsx
