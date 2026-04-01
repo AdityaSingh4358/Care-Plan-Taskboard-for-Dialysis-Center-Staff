@@ -1,4 +1,7 @@
-# 🏥 Dialysis Care Plan Taskboard
+#  Dialysis Care Plan Taskboard
+
+
+## The demo video link of app - https://drive.google.com/file/d/10dOEvymlm8uWmzf16HCFENDbtl0mmXe2/view?usp=drive_link
 
 Managing a dialysis clinic is fast-paced and critical. Communication between **Nurses**, **Dieticians**, and **Social Workers** is essential. 
 
@@ -6,17 +9,17 @@ This **Patient-Centric Taskboard** is designed so clinicians never miss a beat. 
 
 ---
 
-## 🚀 Key Features
+##  Key Features
 
-*   **📋 Patient-Centric Layout**: Rows are patients; columns are statuses (`Overdue`, `In Progress`, `Completed`). No mix-ups.
-*   **🩺 Role-Based Clear Filters**: Instantly sort the board to view strictly **Nurse**, **Dietician**, or **Social Worker** assignments.
-*   **⏰ Dynamic Auto-Overdue Calculation**: Tasks intelligently jump into the **Red "Overdue"** column the second their deadline has rolled into the past.
-*   **⚡ Optimistic UI Updates**: Clinician tasks move instantly upon interaction. Marking "Complete" performs immediately before the server round‑trip finishes to keep workflows snappy.
-*   **💾 Offline‑Safe Mock Persistence**: Perfect for sandboxing/testing. State preserves across refreshes using isolated caching layers.
+*   ** Patient-Centric Layout**: Rows are patients; columns are statuses (`Overdue`, `In Progress`, `Completed`). No mix-ups.
+*   ** Role-Based Clear Filters**: Instantly sort the board to view strictly **Nurse**, **Dietician**, or **Social Worker** assignments.
+*   ** Dynamic Auto-Overdue Calculation**: Tasks intelligently jump into the **Red "Overdue"** column the second their deadline has rolled into the past.
+*   ** Optimistic UI Updates**: Clinician tasks move instantly upon interaction. Marking "Complete" performs immediately before the server round‑trip finishes to keep workflows snappy.
+*   ** Offline‑Safe Mock Persistence**: Perfect for sandboxing/testing. State preserves across refreshes using isolated caching layers.
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 *   **Frontend**: React (Vite) + Vanilla CSS
 *   **State Management**: 
@@ -26,7 +29,7 @@ This **Patient-Centric Taskboard** is designed so clinicians never miss a beat. 
 
 ---
 
-## 🏃 Getting Started (Local Setup)
+##  Getting Started (Local Setup)
 
 To run this full-stack project locally, you will need two separate terminal windows:
 
@@ -47,7 +50,7 @@ npm run dev   # Starts Vite dashboard on http://localhost:5173
 
 ---
 
-## 🧪 Running Tests
+##  Running Tests
 We use **Vitest** to verify critical hook states such as optimistic update triggers and cache rollback upon server failure:
 
 ```bash
@@ -57,7 +60,7 @@ npx vitest
 
 ---
 
-## 📂 Project Architecture
+##  Project Architecture
 
 ```text
 ├── backend/               # Express endpoints & Mongoose patient/task schemas
